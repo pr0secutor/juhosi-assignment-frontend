@@ -26,13 +26,12 @@ const AdminDashboard = () => {
 
   console.log(data);
 
-  let unique_values = data
-    ?.map((item) => item.created_by)
-    .filter(
-      (value, index, current_value) => current_value.indexOf(value) === index
-    );
-
-  console.log(unique_values);
+  // if (data!==undefined) {
+  //   var customer1QuantitySum=0;
+  //   data.forEach(element => {
+      
+  //   });
+  // }
 
   return (
     <Flex
