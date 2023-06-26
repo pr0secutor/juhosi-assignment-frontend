@@ -57,7 +57,7 @@ const Dashboard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (date && item && quantity && weight && trackingID) {
-      const response = await axios.post("http://localhost:5000/order", {
+      const response = await axios.post("https://sql-app.onrender.com/order", {
         created_by: localStorage.getItem("email"),
         order_date: date,
         company,
