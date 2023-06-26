@@ -15,7 +15,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { api } from "../../utils/api";
+import { api } from "../utils/api";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
