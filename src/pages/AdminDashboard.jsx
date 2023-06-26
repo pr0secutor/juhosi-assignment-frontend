@@ -3,13 +3,13 @@ import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import axios from "axios";
+import { api } from "../../utils/api";
 
 const AdminDashboard = () => {
   const [data, setData] = useState();
-
   const fetchdata = async () => {
     const response = await axios
-      .get("http://localhost:5000/fetchdata", {
+      .get(`${api}/fetchdata`, {
         headers: {
           "access-token": localStorage.getItem("token"),
         },

@@ -16,13 +16,13 @@ import Header from "../components/Header";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { api } from "../../utils/api";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-
   const checkAuth = async () => {
     const response = await axios
-      .get("http://localhost:5000/checkauth", {
+      .get(`${api}/checkauth`, {
         headers: {
           "access-token": localStorage.getItem("token"),
         },

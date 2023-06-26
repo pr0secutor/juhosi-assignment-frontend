@@ -15,6 +15,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { api } from "../../utils/api";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -25,7 +26,7 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(email, password);
-    const response = await axios.post("http://localhost:5000/login", {
+    const response = await axios.post(`${api}/login`, {
       email,
       password,
     });
