@@ -26,7 +26,7 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(email, password);
-    const response = await axios.post(`${api}/login`, {
+    const response = await axios.post(`${process.env.API_URL}/login`, {
       email,
       password,
     });

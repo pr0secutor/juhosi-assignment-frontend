@@ -22,7 +22,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const checkAuth = async () => {
     const response = await axios
-      .get(`${api}/checkauth`, {
+      .get(`${process.env.API_URL}/checkauth`, {
         headers: {
           "access-token": localStorage.getItem("token"),
         },
