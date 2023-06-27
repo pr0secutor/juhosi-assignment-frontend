@@ -9,7 +9,7 @@ const AdminDashboard = () => {
   const [data, setData] = useState();
   const fetchdata = async () => {
     const response = await axios
-      .get("https://sql-app.onrender.com/fetchdata", {
+      .get(`${api}/fetchdata`, {
         headers: {
           "access-token": localStorage.getItem("token"),
         },

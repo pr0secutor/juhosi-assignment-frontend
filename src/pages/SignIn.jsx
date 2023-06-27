@@ -25,7 +25,7 @@ export default function SignIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.post("https://sql-app.onrender.com/login", {
+    const response = await axios.post(`${api}/login`, {
       email,
       password,
     });
