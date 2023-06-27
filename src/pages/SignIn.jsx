@@ -11,11 +11,17 @@ import {
   Heading,
   Text,
 } from "@chakra-ui/react";
+
 import axios from "axios";
+
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { api } from "../utils/api";
+
+//toastify
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -31,17 +37,15 @@ export default function SignIn() {
         password,
       })
       .catch((error) => {
-        if (error.response.status === 401) alert("Invalid Credentials");
-        if (error.response.status === 404) alert("User Not Found");
+        if (error.response.status === 401) toast.error("Invalid Credentials");
+        if (error.response.status === 404) toast.error("User Not Found");
       });
-      if(response?.status === 200)
-      {
-        localStorage.setItem("token", response?.data.token);
-        localStorage.setItem("email", email);
-        if (response?.data.data.is_admin) navigate("/admindash");
-        else navigate("/dash");
-      }
-    
+    if (response?.status === 200) {
+      localStorage.setItem("token", response?.data.token);
+      localStorage.setItem("email", email);
+      if (response?.data.data.is_admin) navigate("/admindash");
+      else navigate("/dash");
+    }
   };
 
   return (
@@ -103,6 +107,18 @@ export default function SignIn() {
           </Stack>
         </Box>
       </Stack>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </Flex>
   );
 }

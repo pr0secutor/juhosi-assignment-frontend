@@ -17,6 +17,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { api } from "../utils/api";
+import { ToastContainer, toast } from "react-toastify";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -87,6 +88,7 @@ const Dashboard = () => {
       setBoxCount("");
       setSpecification("");
       setChecklistQuantity("");
+      toast.success("Order Created")
     } else alert("Please fill the required fields");
   };
 
@@ -251,6 +253,18 @@ const Dashboard = () => {
           Submit
         </Button>
       </VStack>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </Flex>
   );
 };
