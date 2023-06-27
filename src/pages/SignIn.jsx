@@ -25,18 +25,23 @@ export default function SignIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await axios.post(`${api}/login`, {
-      email,
-      password,
-    });
-    console.log(response);
-    if (!response?.data.success) {
-      alert("Invalid Credentials");
-    }
-    localStorage.setItem("token", response?.data.token);
-    localStorage.setItem("email", email);
-    if (response?.data.data.is_admin) navigate("/admindash");
-    else navigate("/dash");
+    const response = await axios
+      .post(`${api}/login`, {
+        email,
+        password,
+      })
+      .catch((error) => {
+        if (error.response.status === 401) alert("Invalid Credentials");
+        if (error.response.status === 404) alert("User Not Found");
+      });
+      if(response?.status === 200)
+      {
+        localStorage.setItem("token", response?.data.token);
+        localStorage.setItem("email", email);
+        if (response?.data.data.is_admin) navigate("/admindash");
+        else navigate("/dash");
+      }
+    
   };
 
   return (
@@ -46,7 +51,7 @@ export default function SignIn() {
       align={"center"}
       justify={"center"}
       bg={"gray.50"}
-      initial={{ opacity: 0, }}
+      initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { duration: 0.3 } }}
     >
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
